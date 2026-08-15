@@ -8,7 +8,7 @@ export class AppsMenu extends Dropdown {
     setup() {
     	super.setup();
     	this.commandPaletteOpen = false;
-        this.commandService = useService("command");
+        this.commandService = this.env.services.command;
     	this.companyService = useService('company');
     	if (this.companyService.currentCompany.has_background_image) {
             this.imageUrl = url('/web/image', {
@@ -24,7 +24,8 @@ export class AppsMenu extends Dropdown {
             	if (isOpen) {
             		const openMainPalette = (ev) => {
             	    	if (
-            	    		!this.commandServiceOpen && 
+            	    			!this.commandPaletteOpen &&
+            	    			this.commandService &&
             	    		ev.key.length === 1 &&
             	    		!ev.ctrlKey &&
             	    		!ev.altKey
@@ -45,7 +46,7 @@ export class AppsMenu extends Dropdown {
             },
             () => [this.state.isOpen]
 		);
-    	useBus(this.env.bus, "ACTION_MANAGER:UI-UPDATED", this.state.close);
+    	useBus(this.env.bus, "ACTION_MANAGER:UI-UPDATED", () => this.state.close());
     }
     onOpened() {
 		super.onOpened();
