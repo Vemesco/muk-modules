@@ -38,9 +38,6 @@
                 <span class="d-none d-sm-inline">Log note</span>
             </button>
         </xpath>
-        <xpath expr="//button[hasclass('o-mail-Chatter-activity')]/span" position="before">
-        	<i class="fa fa-clock-o me-sm-1"/>
-        </xpath>
         <xpath expr="//button[hasclass('o-mail-Chatter-activity')]/span" position="attributes">
             <attribute name="class" add="d-none d-sm-inline" separator=" " />
         </xpath>
